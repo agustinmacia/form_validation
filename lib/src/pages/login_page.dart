@@ -96,7 +96,10 @@ class LoginPage extends StatelessWidget {
                 _crearBoton(),
               ],
             ),
-          )
+          ),
+
+          Text('Olvide mi contraseña'),
+          SizedBox(height: 100.0)
         ],
       ),
     );
