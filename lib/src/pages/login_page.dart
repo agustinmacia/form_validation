@@ -88,7 +88,12 @@ class LoginPage extends StatelessWidget {
             child: Column(
               children: <Widget>[
                 Text('Ingreso', style: TextStyle(fontSize: 20.0)),
+                SizedBox(height: 40.0),
                 _crearEmail(),
+                SizedBox(height: 30.0),
+                _crearPassword(),
+                SizedBox(height: 30.0),
+                _crearBoton(),
               ],
             ),
           )
@@ -100,12 +105,47 @@ class LoginPage extends StatelessWidget {
   Widget _crearEmail() {
 
     return Container(
+      padding: EdgeInsets.symmetric(horizontal: 20.0),
       child: TextField(
         keyboardType: TextInputType.emailAddress,
         decoration: InputDecoration(
           icon: Icon(Icons.alternate_email, color: Colors.deepPurple),
+          hintText: 'ejemplo@correo.com',
+          labelText: 'Correo electronico'
         ),
       ),
+    );
+  }
+
+
+  Widget _crearPassword() {
+
+    return Container(
+      padding: EdgeInsets.symmetric(horizontal: 20.0),
+      
+      child: TextField(
+        obscureText: true,
+        decoration: InputDecoration(
+          icon: Icon(Icons.lock_outline, color: Colors.deepPurple),
+          labelText: 'Password'
+        ),
+      ),
+    );
+  }
+
+  Widget _crearBoton() {
+    return RaisedButton(
+      child: Container(
+        padding: EdgeInsets.symmetric(horizontal: 80.0, vertical: 15.0),
+        child: Text('Ingresar'),
+      ),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(5.0),
+      ),
+      elevation: 0.0,
+      color: Colors.deepPurple,
+      textColor: Colors.white,
+      onPressed: () {},
     );
   }
 }
