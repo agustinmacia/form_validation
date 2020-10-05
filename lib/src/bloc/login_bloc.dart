@@ -24,6 +24,8 @@ class LoginBloc {
     _emailController?.close();
     _passwordController?.close();
   }
-
-
 }
+
+/*static LoginBloc of ( BuildContext context ){
+   return context.dependOnInheritedWidgetOfExactType<Provider>().loginBloc;
+}*/
