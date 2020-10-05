@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:form_validation/src/bloc/login_bloc.dart';
+export 'package:form_validation/src/bloc/login_bloc.dart';
 
 class Provider extends InheritedWidget{
 
