@@ -1,33 +1,35 @@
-//Archivo para hacer validaciones en el login form
-
 import 'dart:async';
-
 import 'package:form_validation/src/bloc/validators.dart';
+import 'package:rxdart/rxdart.dart';
 
-class LoginBloc with Validators{
+class LoginBloc with Validators {
 
-  //Le especifico la informacion que va a pasar por el stream Controller. Con el broadcast puedo escuchar mas de una instancia
-  final _emailController = StreamController<String>.broadcast();
-  final _passwordController = StreamController<String>.broadcast();
 
-  //Recuperar datos del stream(Salida)
-  Stream<String> get emailStream => _emailController.stream.transform( validarEmail );
+  final _emailController    = BehaviorSubject<String>();
+  final _passwordController = BehaviorSubject<String>();
+
+  // Recuperar los datos del Stream
+  Stream<String> get emailStream    => _emailController.stream.transform( validarEmail );
   Stream<String> get passwordStream => _passwordController.stream.transform( validarPassword );
-  
-  //Agrego info al stream
-  Function(String) get changeEmail => _emailController.sink.add;
+
+  Stream<bool> get formValidStream => 
+      Rx.combineLatest2(emailStream, passwordStream, (e, o) => true);
+
+
+
+  // Insertar valores al Stream
+  Function(String) get changeEmail    => _emailController.sink.add;
   Function(String) get changePassword => _passwordController.sink.add;
 
 
-  //Cerrar los streams. Uso dipose.
+  // Obtener el último valor ingresado a los streams
+  String get email    => _emailController.value;
+  String get password => _passwordController.value;
+
   dispose() {
-    
-    //Con el ? valido que el valor no sea nulo
     _emailController?.close();
     _passwordController?.close();
   }
+
 }
 
-/*static LoginBloc of ( BuildContext context ){
-   return context.dependOnInheritedWidgetOfExactType<Provider>().loginBloc;
-}*/
