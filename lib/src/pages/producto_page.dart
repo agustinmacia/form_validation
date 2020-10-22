@@ -18,6 +18,14 @@ class _ProductoPageState extends State<ProductoPage> {
 
   @override
   Widget build(BuildContext context) {
+    
+    //Envio los argumentos del producto si viene. Si no viene el productoData vendra como NULL
+    final ProductoModel productoData = ModalRoute.of(context).settings.arguments;
+
+    if(productoData != null) {
+      producto = productoData;
+    }
+    
     return Scaffold(
       appBar: AppBar(
         title: Text('Producto'),
