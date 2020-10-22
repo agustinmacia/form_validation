@@ -24,7 +24,7 @@ class ProductosProvider {
     return true;
   }
 
-  Future<bool> modificarProducto(ProductoModel producto, String id) async {
+  Future<bool> modificarProducto(ProductoModel producto) async {
 
     final url = '$_url/productos/${ producto.id }.json';
 
