@@ -39,6 +39,7 @@ class _ProductoPageState extends State<ProductoPage> {
               children: <Widget>[
                 _crearNombre(),
                 _crearPrecio(),
+                _crearDisponible(),
                 _crearBoton(),
               ],
             ),
@@ -97,6 +98,18 @@ class _ProductoPageState extends State<ProductoPage> {
       );
   }
 
+  Widget _crearDisponible() {
+
+    return SwitchListTile(
+      value: producto.disponible,
+      title: Text('Disponible'),
+      onChanged: (value) => setState(() {
+        producto.disponible = value;
+      }),
+      activeColor: Colors.deepPurple,
+    );
+  }
+
   void _submit() {
 
     if(!formKey.currentState.validate()) return;
@@ -106,7 +119,7 @@ class _ProductoPageState extends State<ProductoPage> {
 
     print(producto.titulo);
     print(producto.valor);
-    
-
+    print(producto.disponible);
+  
   }
 }
